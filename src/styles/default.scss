@@ -1,21 +1,3 @@
-<template>
-  <div id="app">
-    <Parser />
-  </div>
-</template>
-
-<script>
-import Parser from './components/Parser.vue';
-
-export default {
-  name: 'app',
-  components: {
-    Parser,
-  },
-};
-</script>
-
-<style lang="scss">
 *,*::before,*::after{
   box-sizing: border-box;
   margin: 0;
@@ -48,4 +30,3 @@ export default {
   background-color: #3196ff;
   border-radius: 3px;
 }
-</style>
