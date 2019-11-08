@@ -19,6 +19,7 @@ const thisModule = {
   addDragEvents(thisModule){
     const dragArea = this.$refs.dragArea
     window.addEventListener('dragover', thisModule.addProxyDrag(thisModule.handleWindowDragOver.bind(this)))
+    window.addEventListener('dragleave', thisModule.addProxyDrag(thisModule.handleWindowDragLeave.bind(this)))
     window.addEventListener('drop', thisModule.addProxyDrag(thisModule.handleWindowDrop.bind(this)))
     dragArea.addEventListener('dragenter', thisModule.addProxyDrag(thisModule.handleAreaDragEnter.bind(this)))
     dragArea.addEventListener('dragover', thisModule.addProxyDrag(thisModule.handleAreaDragOver.bind(this)))
@@ -80,6 +81,15 @@ const thisModule = {
 
   handleWindowDrop(e){
     e.preventDefault()
+    const dragClassEl = this.$refs.dragClassEl
+    if(dragClassEl){
+      dragClassEl.classList.remove('parser__body--drag-over', 'parser__body--drag-area', 'parser__body--drag-out')
+    }
+  },
+
+  handleWindowDragLeave(e){
+    e.preventDefault()
+    e.stopPropagation()
     const dragClassEl = this.$refs.dragClassEl
     if(dragClassEl){
       dragClassEl.classList.remove('parser__body--drag-over', 'parser__body--drag-area', 'parser__body--drag-out')
