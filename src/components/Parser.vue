@@ -18,6 +18,7 @@
 
 <script>
 import dragModule from '@/modules/drag-n-drop.js'
+import parserModule from '@/modules/parser.js'
 
 export default {
   name: 'Parser',
@@ -36,8 +37,8 @@ export default {
       dragModule.addDragEvents.call(this, dragModule)
     },
     parse(){
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(this.textSource, "text/xml");
+      this.textResult = parserModule.parse(this.textSource)
+      console.log(this.textResult)
     },
   }
 };
