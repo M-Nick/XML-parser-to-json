@@ -25,7 +25,7 @@ export default {
   data(){
     return {
       // textSource:`<a href="https://www.some-site.com">SomeSite</a><a href=https://www.some-site.com>SomeSite</a><a href="https://www.some-site.com"></a><a href=https://www.some-site.com></a><a></a><a/>`,
-      textSource:``,
+      textSource:`<drink>\n<coffee text="arabika">strong</coffee>\n<tea type="black"></tea>\n<tea type="green"></tea>\n</drink>`,
       textResult: '',
     }
   },

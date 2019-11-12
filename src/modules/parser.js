@@ -8,59 +8,72 @@ const parserModule = {
   DOMtoObj(XmlDoc){
     return JSON.stringify(this.children(XmlDoc), null, '\t')
   },
+  addProperty(obj, key, value){
+    if(obj && key){
+      if(Object.keys(obj).includes(key)){
+        if(obj[key] instanceof Array){
+          obj[key].push(value)
+        } else {
+          obj[key] = [obj[key], value]
+        }
+      } else {
+        obj[key] = value
+      }
+      return true
+    } else return false
+  },
   tag(node){
     if(node && node.nodeType == 1 && node.nodeName){
       const result = {
-        name: node.nodeName,
-        type: 'tag',
+        key: node.nodeName,
+        value: {},
       }
       const attributes = this.attributes(node)
-      if(attributes) result['attributes'] = attributes
+      if(attributes) result.value = attributes || {}
       const children = this.children(node)
-      if(children) result['children'] = children
+      if(children){
+        if(children.text){
+          this.addProperty(result.value, 'text', children.text)
+          delete children.text
+        }
+        result.value['childNodes'] = children
+      }
       return result
     }
   },
   attributes(node){
     if(node && node.attributes){
-      const result = []
+      const result = {}
       for(let attr of node.attributes){
-        result.push({ name: attr.nodeName, value: attr.value, type: 'attribute' })
+        this.addProperty(result, attr.nodeName, attr.value)
       }
       return result
-    } else {
-      return void 0
     }
   },
   text(node){
     if(node && node.nodeValue){
-      const result = {
-        type: 'text',
-        value: node.nodeValue.trim()
-      }
-      return result.value ? result : void 0
-    } else {
-      return void 0
+      const result = node.nodeValue.trim()
+      return result ? result : void 0
     }
   },
   children(el){
     if(el && el.childNodes && el.childNodes.length > 0){
-      const result = []
+      let result = {}
       for(let node of el.childNodes){
         switch (node.nodeType){
           case 1: {
             const tag = this.tag(node)
-            if(tag) result.push(tag)
+            console.log('from', tag, result)
+            if(tag) this.addProperty(result, tag.key, tag.value)
+            console.log('to', tag, result)
           }
           case 3: {
             const text = this.text(node)
-            if(text) result.push(text)
+            if(text) this.addProperty(result, 'text', text)
           }
         }
       }
       return result
-    } else {
-      return void 0
     }
   },
 }
