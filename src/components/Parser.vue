@@ -24,8 +24,8 @@ export default {
   name: 'Parser',
   data(){
     return {
-      // textSource:`<a href="https://www.some-site.com">SomeSite</a><a href=https://www.some-site.com>SomeSite</a><a href="https://www.some-site.com"></a><a href=https://www.some-site.com></a><a></a><a/>`,
-      textSource:``,
+      textSource:`<a a="ddd" href="https://www.some-site.com">\n\tSomeSite\n\t<a href='https://www.some-site.com'>SomeSite</a>\n\t<a href="https://www.some-site.com"></a>\n\t<a href="https://www.some-site.com"></a>\n\t<a></a>\n</a>`,
+      // textSource:``,
       textResult: '',
     }
   },
@@ -38,7 +38,6 @@ export default {
     },
     parse(){
       this.textResult = parserModule.parse(this.textSource)
-      console.log(this.textResult)
     },
   }
 };
