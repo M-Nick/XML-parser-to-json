@@ -1,4 +1,4 @@
-export const thisModule = {
+export const dragModule = {
   addProxyDrag(fn){
     const handler = {
       apply: (target, thisArg, args) => {
@@ -16,15 +16,15 @@ export const thisModule = {
     return new Proxy(fn, handler)
   },
 
-  addDragEvents(thisModule){
+  addDragEvents(dragModule){
     const dragArea = this.$refs.dragArea
-    window.addEventListener('dragover', thisModule.addProxyDrag(thisModule.handleWindowDragOver.bind(this)))
-    window.addEventListener('dragleave', thisModule.addProxyDrag(thisModule.handleWindowDragLeave.bind(this)))
-    window.addEventListener('drop', thisModule.addProxyDrag(thisModule.handleWindowDrop.bind(this)))
-    dragArea.addEventListener('dragenter', thisModule.addProxyDrag(thisModule.handleAreaDragEnter.bind(this)))
-    dragArea.addEventListener('dragover', thisModule.addProxyDrag(thisModule.handleAreaDragOver.bind(this)))
-    dragArea.addEventListener('dragleave', thisModule.addProxyDrag(thisModule.handleAreaDragLeave.bind(this)))
-    dragArea.addEventListener('drop', thisModule.addProxyDrag(thisModule.handleAreaDrop.bind(this)))
+    window.addEventListener('dragover', dragModule.addProxyDrag(dragModule.handleWindowDragOver.bind(this)))
+    window.addEventListener('dragleave', dragModule.addProxyDrag(dragModule.handleWindowDragLeave.bind(this)))
+    window.addEventListener('drop', dragModule.addProxyDrag(dragModule.handleWindowDrop.bind(this)))
+    dragArea.addEventListener('dragenter', dragModule.addProxyDrag(dragModule.handleAreaDragEnter.bind(this)))
+    dragArea.addEventListener('dragover', dragModule.addProxyDrag(dragModule.handleAreaDragOver.bind(this)))
+    dragArea.addEventListener('dragleave', dragModule.addProxyDrag(dragModule.handleAreaDragLeave.bind(this)))
+    dragArea.addEventListener('drop', dragModule.addProxyDrag(dragModule.handleAreaDrop.bind(this)))
   },
 
   async handleAreaDragEnter(e){
