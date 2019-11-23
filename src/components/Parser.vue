@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import dragModule from '@/modules/drag-n-drop.js'
-import parserModule from '@/modules/parser.js'
+import { dragModule } from '@/modules/drag-n-drop.js'
+import { parserModule } from '@/modules/parser.js'
 
 export default {
   name: 'Parser',

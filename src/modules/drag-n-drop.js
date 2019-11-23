@@ -1,4 +1,4 @@
-const thisModule = {
+export const thisModule = {
   addProxyDrag(fn){
     const handler = {
       apply: (target, thisArg, args) => {
@@ -96,5 +96,3 @@ const thisModule = {
     }
   },
 }
-
-export default thisModule
