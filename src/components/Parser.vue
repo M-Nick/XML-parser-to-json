@@ -24,8 +24,8 @@ export default {
   name: 'Parser',
   data(){
     return {
-      textSource:`<a a="ddd" href="https://www.some-site.com">\n\tSomeSite\n\t<a href='https://www.some-site.com'>SomeSite</a>\n\t<a href="https://www.some-site.com"></a>\n\t<a href="https://www.some-site.com"></a>\n\t<a></a>\n</a>`,
-      // textSource:``,
+      // textSource:`<a a="ddd" href="https://www.some-site.com">\n\tSomeSite\n\t<a href='https://www.some-site.com'>SomeSite</a>\n\t<a href="https://www.some-site.com"></a>\n\t<a href="https://www.some-site.com"></a>\n\t<a></a>\n</a>`,
+      textSource:``,
       textResult: '',
     }
   },
